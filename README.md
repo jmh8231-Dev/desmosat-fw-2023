@@ -5,7 +5,7 @@
 
 ---
 
-## TL;DR (한눈에 보기)
+## TL;DR
 - **버스 구조**: 모듈 간 **CAN 2.0B / 11-bit / 500 kbps**, 리틀엔디안, 버전 필드 포함
 - **지상국 링크**: **RF 433 MHz 1 W ↔ MCU UART** (115200-8N1 권장), TLV 패킷 + CRC16-CCITT
 - **모듈 역할**
@@ -20,7 +20,7 @@
 
 ---
 
-## 1) 저장소 구조 (권장)
+## 1) 저장소 구조
 ~~~
 desmosat-fw-2023/
 ├─ common/                 # 공통 라이브러리(드라이버/프로토콜/로깅/유틸)
@@ -146,7 +146,7 @@ uint16_t crc16_ccitt(const uint8_t* data, uint16_t len);
 
 ---
 
-## 6) 모듈별 상태머신(요약)
+## 6) 모듈별 상태머신
 ### 6.1 Common
 - **BOOT**(WDT/Reset log) → **INIT**(센서/버스 초기화) → **DISCOVERY**(노드 Heartbeat 대기) → **NOMINAL**(수집/연산/전송)  
 - Fault 조건: 버스오프>3회/분, 전압 저하, 센서 초기화 실패 → **SAFE**(샘플링 저하, RF 최소화)
@@ -187,12 +187,6 @@ uint16_t crc16_ccitt(const uint8_t* data, uint16_t len);
 - **RF 링버퍼 스트레스**: 5 kB/s 스트림 60 s 무손실 검증(CRC 에러=0)
 - **전력 이벤트**: 저전압 시나리오에서 샘플링률 저하/복귀 시간 측정
 - **로그**: SWO/RTT 실시간 로그 + SD 카드(선택)
-
----
-
-## 10) 빌드/배포
-- 각 모듈 폴더의 `README_BUILD.md`에 **핀맵/클럭/비트레이트** 명시
-- 릴리즈 시 **firmware bundle**: `common_fc.bin`, `custom_a.bin`, `landing.bin`, `gcs.bin` + `CHANGELOG.md`
 
 ---
 
