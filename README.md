@@ -235,3 +235,7 @@ STAT: u16 range_mm, u16 servo_mdeg, u16 flags, u16 temp_c10
 - [ ] RF TLV + CRC16 공통화  
 - [ ] Reset cause/Watchdog 로깅 추가  
 - [ ] GCS 시리얼 파서 + 간단 GUI(LVGL/Processing/Python) 연동  
+
+---
+
+> **Hardware repo**: [https://github.com/ORG/REPO-HW  ](https://github.com/jmh8231-Dev/desmosat-hw-2023/tree/main)
